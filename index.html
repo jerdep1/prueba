@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silent Sleep - Mouth Tape</title>
+    <style>
+        /* --- ESTILOS VISUALES --- */
+        :root {
+            --black: #1a1a1a;
+            --gray: #666666;
+            --light: #f9f9f9;
+            --white: #ffffff;
+            --whatsapp-color: #25D366;
+            --paypal-color: #0070BA;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+        body { background-color: var(--light); color: var(--black); line-height: 1.6; }
+
+        .container { max-width: 700px; margin: 0 auto; padding: 20px; }
+
+        header { 
+            text-align: center; 
+            padding: 40px 20px 20px; 
+            background: var(--white); 
+            border-bottom: 1px solid #eee;
+        }
+
+        /* LOGO */
+        .logo-header { width: 180px; margin: 0 auto 10px; }
+        .logo-header img { width: 100%; height: auto; display: block; }
+
+        /* PRODUCTO */
+        .product-hero {
+            width: 100%; max-width: 450px; margin: 20px auto;
+            border-radius: 10px; overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            background: #fff; position: relative;
+            min-height: 300px; /* Espacio reservado si no carga */
+            display: flex; align-items: center; justify-content: center;
+        }
+        .product-hero img { width: 100%; height: auto; display: block; position: relative; z-index: 2;}
+
+        /* Texto de error si la imagen falla */
+        .img-error-text {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            text-align: center; color: red; font-size: 0.8rem; z-index: 1; width: 80%;
+        }
+
+        .headline { font-size: 1.8rem; margin: 20px 0 10px; font-weight: 800; text-transform: uppercase; letter-spacing: -0.5px; }
+        .subheadline { font-size: 1.1rem; color: var(--gray); margin-bottom: 20px; font-weight: 400; }
+        
+        /* BOTONES */
+        .btn-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 25px; }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 16px 32px; font-size: 1rem; font-weight: bold;
+            text-decoration: none; border-radius: 8px; border: none;
+            cursor: pointer; color: white; transition: all 0.2s ease;
+            min-width: 220px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-black { background-color: var(--black); }
+        .btn-whatsapp { background-color: var(--whatsapp-color); }
+        .btn-paypal { background-color: var(--paypal-color); }
+
+        /* BENEFICIOS Y OFERTA */
+        .features { padding: 40px 20px; background: var(--white); margin-top: 20px; border-radius: 12px; }
+        .feature-item { display: flex; align-items: flex-start; margin-bottom: 20px; text-align: left; }
+        .feature-icon { font-size: 1.5rem; margin-right: 15px; min-width: 30px; }
+        
+        .offer-box { 
+            text-align: center; padding: 40px 20px; background: var(--white); 
+            margin-top: 30px; border: 2px solid var(--black); border-radius: 12px;
+        }
+        .price-tag { font-size: 2.5rem; font-weight: 800; color: var(--black); margin: 10px 0; }
+        .old-price { text-decoration: line-through; color: #999; font-size: 1.1rem; }
+        footer { text-align: center; padding: 40px 20px; color: #888; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo-header">
+                <img src="logo.jpg" 
+                     onerror="this.onerror=null; this.src='logo.png'; this.onerror=function(){this.src='logo.jpeg'}" 
+                     alt="Silent Sleep Logo">
+            </div>
+
+            <h1 class="headline">Descanso Profundo & Sin Ruidos</h1>
+            <p class="subheadline">La solución definitiva para dejar de roncar.</p>
+
+            <div class="product-hero">
+                <span class="img-error-text">⚠️ La imagen no carga.<br>Verifica que se llame 'producto'</span>
+                <img src="producto.jpg" 
+                     onerror="this.onerror=null; this.src='producto.png'; this.onerror=function(){this.src='producto.jpeg'}" 
+                     alt="Silent Sleep Pack">
+            </div>
+
+            <a href="#comprar" class="btn btn-black">⬇️ Ver Oferta Especial</a>
+        </div>
+    </header>
+
+    <section class="container">
+        <div class="features">
+            <h2 style="text-align: center; margin-bottom: 30px; text-transform: uppercase; font-size: 1.2rem;">¿Por qué funciona?</h2>
+            <div class="feature-item">
+                <span class="feature-icon">🤐</span>
+                <div><strong>Adiós Ronquidos:</strong> Fomenta la respiración nasal instantáneamente.</div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">⚡</span>
+                <div><strong>Energía Total:</strong> Mejora la oxigenación durante el sueño profundo.</div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">🛡️</span>
+                <div><strong>Seguro:</strong> Adhesivo hipoalergénico suave con tu piel.</div>
+            </div>
+        </div>
+    </section>
+
+    <div style="background: var(--black); color: var(--white); padding: 30px 20px; text-align: center; margin-top: 20px;">
+        <p style="font-style: italic;">"Es increíble la diferencia. Me despierto sin la garganta seca."</p>
+        <p style="margin-top: 10px; opacity: 0.8;">— Cliente Verificado</p>
+    </div>
+
+    <section id="comprar" class="container">
+        <div class="offer-box">
+            <h3>Pack 30 Noches</h3>
+            <p style="color: var(--gray);">Envío Discreto y Rápido</p>
+            
+            <div style="margin: 20px 0;">
+                <span class="old-price">$29.99</span>
+                <div class="price-tag">$14.99 USD</div>
+            </div>
+
+            <div class="btn-container">
+                <a href="https://www.paypal.com/paypalme/TU_USUARIO/14.99" target="_blank" class="btn btn-paypal">
+                    💳 Pagar con PayPal
+                </a>
+
+                <button onclick="comprarPorWhatsApp()" class="btn btn-whatsapp">
+                    💬 Pedir por WhatsApp
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer><p>© 2025 Silent Sleep.</p></footer>
+
+    <script>
+        function comprarPorWhatsApp() {
+            // 🔴 TU NÚMERO AQUÍ
+            let telefono = "5210000000000"; 
+            let mensaje = "Hola, quiero el Pack Silent Sleep de $14.99.";
+            window.open("https://wa.me/" + telefono + "?text=" + encodeURIComponent(mensaje), '_blank');
+        }
+    </script>
+</body>
+</html>
