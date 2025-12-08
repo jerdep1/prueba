@@ -9,7 +9,7 @@
         :root {
             --text-color: #121212;
             --bg-color: #ffffff;
-            --accent-color: #000000; /* Botón negro estilo Shopify */
+            --accent-color: #000000;
             --border-color: #e1e3e5;
             --whatsapp-green: #25D366;
             --paypal-blue: #0070BA;
@@ -18,7 +18,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
 
-        /* Barra de Anuncio (Top Bar) */
+        /* Barra de Anuncio */
         .announcement-bar {
             background-color: var(--text-color);
             color: white;
@@ -30,7 +30,7 @@
             text-transform: uppercase;
         }
 
-        /* Cabecera (Header) */
+        /* Cabecera */
         header {
             padding: 20px 40px;
             border-bottom: 1px solid var(--border-color);
@@ -42,30 +42,31 @@
             background: white;
             z-index: 100;
         }
-        .logo-img { height: 40px; width: auto; }
+        .logo-img { height: 50px; width: auto; object-fit: contain;}
         .cart-icon { font-size: 1.5rem; cursor: pointer; }
 
-        /* --- LAYOUT PRINCIPAL (2 COLUMNAS) --- */
+        /* Layout */
         .product-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Mitad y mitad */
+            grid-template-columns: 1fr 1fr;
             gap: 60px;
         }
 
-        /* Columna Izquierda: Galería */
+        /* Galería */
         .gallery-section { display: flex; flex-direction: column; gap: 15px; }
         .main-image {
             width: 100%;
             border-radius: 8px;
             overflow: hidden;
             border: 1px solid #f0f0f0;
+            position: relative;
         }
-        .main-image img { width: 100%; height: auto; display: block; transition: opacity 0.3s; }
+        .main-image img { width: 100%; height: auto; display: block; }
         
-        .thumbnails { display: flex; gap: 10px; overflow-x: auto; }
+        .thumbnails { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; }
         .thumb {
             width: 80px; height: 80px;
             border-radius: 8px;
@@ -75,7 +76,7 @@
         }
         .thumb:hover, .thumb.active { border: 2px solid var(--text-color); }
 
-        /* Columna Derecha: Detalles */
+        /* Detalles */
         .product-details { padding-top: 10px; }
         .brand-name { font-size: 0.8rem; text-transform: uppercase; color: #666; letter-spacing: 1px; margin-bottom: 10px; }
         .product-title { font-size: 2.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 15px; }
@@ -85,65 +86,32 @@
         .compare-price { text-decoration: line-through; color: #757575; font-size: 1.1rem; }
         .badge-sale { background: #000; color: white; font-size: 0.7rem; padding: 4px 8px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
 
-        /* Selector de Cantidad (Estético) */
-        .quantity-selector {
-            display: flex;
-            border: 1px solid var(--border-color);
-            width: 120px;
-            height: 45px;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 15px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-        }
-        .qty-btn { background: none; border: none; font-size: 1.2rem; cursor: pointer; }
-
-        /* Botones de Acción */
-        .action-buttons { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+        /* Botones */
+        .action-buttons { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; margin-top: 20px;}
         
         .btn {
-            width: 100%;
-            padding: 18px;
-            font-size: 1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 4px; /* Bordes cuadraditos tipo Shopify */
-            cursor: pointer;
+            width: 100%; padding: 18px; font-size: 1rem; font-weight: 600;
+            border: none; border-radius: 4px; cursor: pointer;
+            text-align: center; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;
             transition: opacity 0.2s;
-            text-align: center;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
-        
-        .btn-primary { background-color: var(--accent-color); color: white; } /* Botón Negro */
-        .btn-secondary { background-color: var(--paypal-blue); color: white; }
+        .btn-primary { background-color: var(--accent-color); color: white; }
         .btn-whatsapp { 
-            background-color: white; 
-            color: var(--whatsapp-green); 
+            background-color: white; color: var(--whatsapp-green); 
             border: 1px solid var(--whatsapp-green);
             display: flex; align-items: center; justify-content: center; gap: 10px;
         }
-        
         .btn:hover { opacity: 0.85; }
 
-        /* Acordeones (Detalles desplegables) */
-        details {
-            border-top: 1px solid var(--border-color);
-            padding: 15px 0;
-            cursor: pointer;
-        }
+        /* Acordeones */
+        details { border-top: 1px solid var(--border-color); padding: 15px 0; cursor: pointer; }
         details:last-of-type { border-bottom: 1px solid var(--border-color); }
         summary { font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; }
-        summary::after { content: '+'; font-size: 1.2rem; }
-        details[open] summary::after { content: '-'; }
         .details-content { padding-top: 15px; font-size: 0.95rem; color: #555; }
 
         /* Footer */
         footer { border-top: 1px solid var(--border-color); padding: 50px 20px; text-align: center; margin-top: 50px; font-size: 0.8rem; color: #777; }
 
-        /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 768px) {
             .product-container { grid-template-columns: 1fr; gap: 30px; padding: 20px; }
             .product-title { font-size: 1.8rem; }
@@ -153,13 +121,11 @@
 </head>
 <body>
 
-    <div class="announcement-bar">
-        🚚 Envío Gratis en pedidos hoy
-    </div>
+    <div class="announcement-bar">🚚 Envío Gratis en pedidos hoy</div>
 
     <header>
         <div class="logo">
-            <img src="logo.jpg" alt="Silent Sleep" class="logo-img" onerror="this.style.display='none'; this.parentElement.innerText='SILENT SLEEP'">
+            <img src="https://ibb.co/C5PT3Tt9" alt="Silent Sleep" class="logo-img">
         </div>
         <div class="cart-icon">🛒</div>
     </header>
@@ -168,22 +134,21 @@
         
         <div class="gallery-section">
             <div class="main-image">
-                <img id="mainImg" src="foto1.jpg" alt="Producto Principal">
+                <img id="mainImg" src="https://ibb.co/SwZDdXQz" alt="Producto Principal">
             </div>
+            
             <div class="thumbnails">
-                <img src="foto1.jpg" class="thumb active" onclick="changeImage(this, 'foto1.jpg')">
-                <img src="foto2.jpg" class="thumb" onclick="changeImage(this, 'foto2.jpg')">
-                <img src="foto3.jpg" class="thumb" onclick="changeImage(this, 'foto3.jpg')">
-            </div>
+                <img src="https://via.placeholder.com/600x600?text=FOTO+1" class="thumb active" 
+                     onclick="changeImage(this, 'https://via.placeholder.com/600x600?text=FOTO+1')"> <img src="https://via.placeholder.com/600x600?text=FOTO+2" class="thumb" 
+                     onclick="changeImage(this, 'https://via.placeholder.com/600x600?text=FOTO+2')"> <img src="https://via.placeholder.com/600x600?text=FOTO+3" class="thumb" 
+                     onclick="changeImage(this, 'https://via.placeholder.com/600x600?text=FOTO+3')"> </div>
         </div>
 
         <div class="product-details">
             <p class="brand-name">Silent Sleep Oficial</p>
             <h1 class="product-title">Pack Corrector de Sueño (Mouth Tape)</h1>
             
-            <div class="reviews-stars" style="color: #FFD700; margin-bottom: 10px; font-size: 0.9rem;">
-                ★★★★★ <span style="color: #777; margin-left: 5px;">(48 Reseñas)</span>
-            </div>
+            <div style="color: #FFD700; margin-bottom: 10px; font-size: 0.9rem;">★★★★★ (48 Reseñas)</div>
 
             <div class="price-wrapper">
                 <span class="current-price">$14.99 USD</span>
@@ -191,16 +156,9 @@
                 <span class="badge-sale">OFERTA</span>
             </div>
 
-            <p style="margin-bottom: 20px; font-size: 0.95rem; color: #444;">
-                Elimina los ronquidos y despierta con energía. Nuestro diseño hipoalergénico te ayuda a respirar por la nariz de forma natural y segura.
+            <p style="margin-bottom: 20px; color: #444;">
+                Elimina los ronquidos y despierta con energía. Diseño hipoalergénico seguro y cómodo.
             </p>
-
-            <label style="font-size: 0.8rem; font-weight: bold; display: block; margin-bottom: 5px;">Cantidad</label>
-            <div class="quantity-selector">
-                <button class="qty-btn">-</button>
-                <span>1</span>
-                <button class="qty-btn">+</button>
-            </div>
 
             <div class="action-buttons">
                 <a href="https://www.paypal.com/paypalme/TU_USUARIO/14.99" target="_blank" class="btn btn-primary">
@@ -208,39 +166,25 @@
                 </a>
                 
                 <button onclick="comprarPorWhatsApp()" class="btn btn-whatsapp">
-                    <span style="font-size: 1.2rem;">💬</span> Pedir por WhatsApp
+                    <span>💬</span> Pedir por WhatsApp
                 </button>
-            </div>
-
-            <div style="font-size: 0.8rem; color: #666; margin-bottom: 30px; display: flex; align-items: center; gap: 5px;">
-                🔒 Pago seguro y encriptado
             </div>
 
             <details open>
                 <summary>Descripción</summary>
                 <div class="details-content">
                     <ul>
-                        <li>✅ <strong>Material Médico:</strong> Suave con la piel y fácil de quitar.</li>
-                        <li>✅ <strong>30 Noches:</strong> El paquete incluye suministro para un mes.</li>
-                        <li>✅ <strong>Resultados:</strong> Reduce ronquidos desde la primera noche.</li>
+                        <li>✅ Material Médico Suave</li>
+                        <li>✅ Suministro para 30 noches</li>
+                        <li>✅ Reduce ronquidos inmediatamente</li>
                     </ul>
                 </div>
             </details>
             
             <details>
                 <summary>Envío y Entrega</summary>
-                <div class="details-content">
-                    Enviamos todos los pedidos en 24 horas. El tiempo de entrega estándar es de 3 a 5 días hábiles. Embalaje discreto.
-                </div>
+                <div class="details-content">Enviamos en 24 horas. Entrega discreta en 3-5 días.</div>
             </details>
-
-            <details>
-                <summary>Garantía de Satisfacción</summary>
-                <div class="details-content">
-                    Si no notas una mejoría en tu descanso en los primeros 14 días, contáctanos para un reembolso completo.
-                </div>
-            </details>
-
         </div>
     </main>
 
@@ -251,40 +195,35 @@
             <div style="background: #f9f9f9; padding: 20px; border-radius: 8px;">
                 <div style="color: #FFD700;">★★★★★</div>
                 <h4 style="margin: 10px 0 5px; font-size: 0.95rem;">Cambió mi vida</h4>
-                <p style="font-size: 0.9rem; color: #555;">"Sufro de boca seca y ronquidos desde hace años. Esto lo solucionó en una noche."</p>
+                <p style="font-size: 0.9rem; color: #555;">"Sufro de ronquidos desde hace años. Esto lo solucionó en una noche."</p>
                 <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">Juan P. - Verificado</p>
             </div>
             <div style="background: #f9f9f9; padding: 20px; border-radius: 8px;">
                 <div style="color: #FFD700;">★★★★★</div>
                 <h4 style="margin: 10px 0 5px; font-size: 0.95rem;">Muy cómodo</h4>
-                <p style="font-size: 0.9rem; color: #555;">"Tenía miedo de que me doliera al quitarlo, pero el pegamento es muy suave."</p>
+                <p style="font-size: 0.9rem; color: #555;">"El pegamento es muy suave y no molesta."</p>
                 <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">Maria L. - Verificado</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>© 2025 Silent Sleep. Todos los derechos reservados.</p>
-        <p style="margin-top: 10px;">Powered by Shopify Style HTML</p>
+        <p>© 2025 Silent Sleep.</p>
     </footer>
 
     <script>
-        // Lógica para cambiar la foto al hacer clic en miniatura
         function changeImage(thumb, src) {
             document.getElementById('mainImg').src = src;
-            // Quitar clase active de todas
             document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-            // Poner clase active a la clickeada
             thumb.classList.add('active');
         }
 
-        // Lógica WhatsApp
         function comprarPorWhatsApp() {
-            let telefono = "5210000000000"; // 🔴 PON TU NÚMERO
-            let mensaje = "Hola, quiero comprar el Pack Silent Sleep de la oferta.";
+            // 🔴 5. PON TU NÚMERO AQUÍ
+            let telefono = "5210000000000"; 
+            let mensaje = "Hola, quiero el Pack Silent Sleep de la oferta.";
             window.open("https://wa.me/" + telefono + "?text=" + encodeURIComponent(mensaje), '_blank');
         }
     </script>
-
 </body>
 </html>
