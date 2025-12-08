@@ -3,170 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Silent Sleep - Oficial</title>
+    <title>Silent Sleep - Tienda Oficial</title>
     <style>
-        /* --- ESTILOS VISUALES --- */
+        /* --- ESTILOS VISUALES SHOPIFY --- */
         :root {
-            --black: #1a1a1a;
-            --gray: #666666;
-            --light: #f4f4f4;
-            --white: #ffffff;
-            --whatsapp: #25D366;
-            --paypal: #0070BA;
+            --text-color: #121212;
+            --bg-color: #ffffff;
+            --accent-color: #000000; /* Botón negro estilo Shopify */
+            --border-color: #e1e3e5;
+            --whatsapp-green: #25D366;
+            --paypal-blue: #0070BA;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
-        body { background-color: var(--light); color: var(--black); line-height: 1.6; padding-bottom: 40px;}
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
 
-        .container { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+        /* Barra de Anuncio (Top Bar) */
+        .announcement-bar {
+            background-color: var(--text-color);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-        /* HEADER & LOGO */
-        header { background: var(--white); padding: 30px 20px; text-align: center; border-bottom: 1px solid #eee; }
-        .logo-img { width: 160px; display: block; margin: 0 auto 15px; }
-
-        h1 { font-size: 1.8rem; text-transform: uppercase; letter-spacing: -0.5px; margin-bottom: 5px; }
-        .subtitle { color: var(--gray); font-size: 1rem; margin-bottom: 25px; }
-
-        /* --- GALERÍA CARRUSEL (Estilo Instagram) --- */
-        .gallery-wrapper {
+        /* Cabecera (Header) */
+        header {
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 15px;
-            padding-bottom: 15px;
-            -webkit-overflow-scrolling: touch; /* Suavidad en iPhone */
-            
-            /* Ocultar barra de scroll para que se vea limpio */
-            scrollbar-width: none; 
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 100;
         }
-        .gallery-wrapper::-webkit-scrollbar { display: none; }
+        .logo-img { height: 40px; width: auto; }
+        .cart-icon { font-size: 1.5rem; cursor: pointer; }
 
-        .gallery-item {
-            min-width: 100%; /* Cada foto ocupa el 100% del ancho */
-            scroll-snap-align: center;
-            border-radius: 12px;
+        /* --- LAYOUT PRINCIPAL (2 COLUMNAS) --- */
+        .product-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Mitad y mitad */
+            gap: 60px;
+        }
+
+        /* Columna Izquierda: Galería */
+        .gallery-section { display: flex; flex-direction: column; gap: 15px; }
+        .main-image {
+            width: 100%;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            position: relative;
+            border: 1px solid #f0f0f0;
         }
-        .gallery-item img { width: 100%; display: block; }
+        .main-image img { width: 100%; height: auto; display: block; transition: opacity 0.3s; }
         
-        .swipe-hint { text-align: center; font-size: 0.8rem; color: #999; margin-top: -10px; margin-bottom: 30px;}
+        .thumbnails { display: flex; gap: 10px; overflow-x: auto; }
+        .thumb {
+            width: 80px; height: 80px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            object-fit: cover;
+        }
+        .thumb:hover, .thumb.active { border: 2px solid var(--text-color); }
 
-        /* --- BOTONES --- */
-        .btn-container { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+        /* Columna Derecha: Detalles */
+        .product-details { padding-top: 10px; }
+        .brand-name { font-size: 0.8rem; text-transform: uppercase; color: #666; letter-spacing: 1px; margin-bottom: 10px; }
+        .product-title { font-size: 2.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 15px; }
+        
+        .price-wrapper { font-size: 1.5rem; margin-bottom: 25px; display: flex; align-items: center; gap: 15px; }
+        .current-price { font-weight: 500; }
+        .compare-price { text-decoration: line-through; color: #757575; font-size: 1.1rem; }
+        .badge-sale { background: #000; color: white; font-size: 0.7rem; padding: 4px 8px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
+
+        /* Selector de Cantidad (Estético) */
+        .quantity-selector {
+            display: flex;
+            border: 1px solid var(--border-color);
+            width: 120px;
+            height: 45px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .qty-btn { background: none; border: none; font-size: 1.2rem; cursor: pointer; }
+
+        /* Botones de Acción */
+        .action-buttons { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+        
         .btn {
-            display: flex; align-items: center; justify-content: center;
-            padding: 18px; font-size: 1.1rem; font-weight: bold;
-            text-decoration: none; border-radius: 50px; color: white;
-            transition: transform 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            padding: 18px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 4px; /* Bordes cuadraditos tipo Shopify */
+            cursor: pointer;
+            transition: opacity 0.2s;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .btn:hover { transform: scale(1.02); }
-        .btn-black { background: var(--black); }
-        .btn-whats { background: var(--whatsapp); }
-        .btn-paypal { background: var(--paypal); }
-
-        /* --- RESEÑAS (REVIEWS) --- */
-        .reviews-section { margin-top: 40px; }
-        .review-card {
-            background: var(--white);
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        
+        .btn-primary { background-color: var(--accent-color); color: white; } /* Botón Negro */
+        .btn-secondary { background-color: var(--paypal-blue); color: white; }
+        .btn-whatsapp { 
+            background-color: white; 
+            color: var(--whatsapp-green); 
+            border: 1px solid var(--whatsapp-green);
+            display: flex; align-items: center; justify-content: center; gap: 10px;
         }
-        .stars { color: #FFD700; letter-spacing: 2px; }
-        .review-text { font-size: 0.95rem; margin: 10px 0; font-style: italic; color: #444; }
-        .review-author { font-size: 0.85rem; font-weight: bold; color: #888; text-transform: uppercase; }
+        
+        .btn:hover { opacity: 0.85; }
 
-        /* PRECIO */
-        .price-area { 
-            background: white; padding: 30px; border-radius: 15px; 
-            text-align: center; margin-top: 40px; border: 2px solid var(--black);
+        /* Acordeones (Detalles desplegables) */
+        details {
+            border-top: 1px solid var(--border-color);
+            padding: 15px 0;
+            cursor: pointer;
         }
-        .price-big { font-size: 2.5rem; font-weight: 800; }
-        .price-old { text-decoration: line-through; color: #aaa; }
+        details:last-of-type { border-bottom: 1px solid var(--border-color); }
+        summary { font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        summary::after { content: '+'; font-size: 1.2rem; }
+        details[open] summary::after { content: '-'; }
+        .details-content { padding-top: 15px; font-size: 0.95rem; color: #555; }
 
+        /* Footer */
+        footer { border-top: 1px solid var(--border-color); padding: 50px 20px; text-align: center; margin-top: 50px; font-size: 0.8rem; color: #777; }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 768px) {
+            .product-container { grid-template-columns: 1fr; gap: 30px; padding: 20px; }
+            .product-title { font-size: 1.8rem; }
+            header { padding: 15px 20px; }
+        }
     </style>
 </head>
 <body>
 
+    <div class="announcement-bar">
+        🚚 Envío Gratis en pedidos hoy
+    </div>
+
     <header>
-        <div class="container">
-            <img src="logo.jpg" alt="Logo" class="logo-img" onerror="this.style.display='none'"> 
-            
-            <h1>Silent Sleep</h1>
-            <p class="subtitle">La solución definitiva para dejar de roncar.</p>
-
-            <div class="gallery-wrapper">
-                <div class="gallery-item">
-                    <img src="foto1.jpg" alt="Producto vista principal">
-                </div>
-                <div class="gallery-item">
-                    <img src="foto2.jpg" alt="Producto detalle">
-                </div>
-                <div class="gallery-item">
-                    <img src="foto3.jpg" alt="Empaque">
-                </div>
-            </div>
-            <p class="swipe-hint">👈 Desliza para ver más fotos 👉</p>
-
-            <a href="#comprar" class="btn btn-black">⬇️ Ver Oferta Especial</a>
+        <div class="logo">
+            <img src="logo.jpg" alt="Silent Sleep" class="logo-img" onerror="this.style.display='none'; this.parentElement.innerText='SILENT SLEEP'">
         </div>
+        <div class="cart-icon">🛒</div>
     </header>
 
-    <section class="container reviews-section">
-        <h2 style="text-align: center; margin-bottom: 20px;">Lo que dicen nuestros clientes</h2>
-
-        <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">"Al principio dudé, pero la diferencia es enorme. Mi esposa dice que ya no ronco y me despierto con mucha energía."</p>
-            <p class="review-author">✅ Javier M. - Compra Verificada</p>
+    <main class="product-container">
+        
+        <div class="gallery-section">
+            <div class="main-image">
+                <img id="mainImg" src="foto1.jpg" alt="Producto Principal">
+            </div>
+            <div class="thumbnails">
+                <img src="foto1.jpg" class="thumb active" onclick="changeImage(this, 'foto1.jpg')">
+                <img src="foto2.jpg" class="thumb" onclick="changeImage(this, 'foto2.jpg')">
+                <img src="foto3.jpg" class="thumb" onclick="changeImage(this, 'foto3.jpg')">
+            </div>
         </div>
 
-        <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">"Súper cómodo. El adhesivo es suave y no me deja marcas en la piel. Lo uso todas las noches."</p>
-            <p class="review-author">✅ Andrea G. - Compra Verificada</p>
-        </div>
-
-        <div class="review-card">
-            <div class="stars">★★★★☆</div>
-            <p class="review-text">"Llegó rápido y en buen estado. Realmente ayuda a no tener la boca seca por la mañana."</p>
-            <p class="review-author">✅ Roberto S. - Compra Verificada</p>
-        </div>
-    </section>
-
-    <section id="comprar" class="container">
-        <div class="price-area">
-            <h3>Pack Mensual (30 Noches)</h3>
-            <p style="color: gray; font-size: 0.9rem;">Envío seguro y discreto</p>
+        <div class="product-details">
+            <p class="brand-name">Silent Sleep Oficial</p>
+            <h1 class="product-title">Pack Corrector de Sueño (Mouth Tape)</h1>
             
-            <br>
-            <span class="price-old">$29.99</span>
-            <div class="price-big">$14.99 USD</div>
+            <div class="reviews-stars" style="color: #FFD700; margin-bottom: 10px; font-size: 0.9rem;">
+                ★★★★★ <span style="color: #777; margin-left: 5px;">(48 Reseñas)</span>
+            </div>
 
-            <div class="btn-container">
-                <a href="https://www.paypal.com/paypalme/TU_USUARIO/14.99" target="_blank" class="btn btn-paypal">
-                    💳 Pagar con PayPal
+            <div class="price-wrapper">
+                <span class="current-price">$14.99 USD</span>
+                <span class="compare-price">$29.99</span>
+                <span class="badge-sale">OFERTA</span>
+            </div>
+
+            <p style="margin-bottom: 20px; font-size: 0.95rem; color: #444;">
+                Elimina los ronquidos y despierta con energía. Nuestro diseño hipoalergénico te ayuda a respirar por la nariz de forma natural y segura.
+            </p>
+
+            <label style="font-size: 0.8rem; font-weight: bold; display: block; margin-bottom: 5px;">Cantidad</label>
+            <div class="quantity-selector">
+                <button class="qty-btn">-</button>
+                <span>1</span>
+                <button class="qty-btn">+</button>
+            </div>
+
+            <div class="action-buttons">
+                <a href="https://www.paypal.com/paypalme/TU_USUARIO/14.99" target="_blank" class="btn btn-primary">
+                    AGREGAR AL CARRITO - $14.99
                 </a>
-
-                <button onclick="comprarPorWhatsApp()" class="btn btn-whats">
-                    💬 Pedir por WhatsApp
+                
+                <button onclick="comprarPorWhatsApp()" class="btn btn-whatsapp">
+                    <span style="font-size: 1.2rem;">💬</span> Pedir por WhatsApp
                 </button>
+            </div>
+
+            <div style="font-size: 0.8rem; color: #666; margin-bottom: 30px; display: flex; align-items: center; gap: 5px;">
+                🔒 Pago seguro y encriptado
+            </div>
+
+            <details open>
+                <summary>Descripción</summary>
+                <div class="details-content">
+                    <ul>
+                        <li>✅ <strong>Material Médico:</strong> Suave con la piel y fácil de quitar.</li>
+                        <li>✅ <strong>30 Noches:</strong> El paquete incluye suministro para un mes.</li>
+                        <li>✅ <strong>Resultados:</strong> Reduce ronquidos desde la primera noche.</li>
+                    </ul>
+                </div>
+            </details>
+            
+            <details>
+                <summary>Envío y Entrega</summary>
+                <div class="details-content">
+                    Enviamos todos los pedidos en 24 horas. El tiempo de entrega estándar es de 3 a 5 días hábiles. Embalaje discreto.
+                </div>
+            </details>
+
+            <details>
+                <summary>Garantía de Satisfacción</summary>
+                <div class="details-content">
+                    Si no notas una mejoría en tu descanso en los primeros 14 días, contáctanos para un reembolso completo.
+                </div>
+            </details>
+
+        </div>
+    </main>
+
+    <section class="container" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+        <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 40px;">
+        <h3 style="margin-bottom: 20px;">Reseñas de Clientes</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div style="background: #f9f9f9; padding: 20px; border-radius: 8px;">
+                <div style="color: #FFD700;">★★★★★</div>
+                <h4 style="margin: 10px 0 5px; font-size: 0.95rem;">Cambió mi vida</h4>
+                <p style="font-size: 0.9rem; color: #555;">"Sufro de boca seca y ronquidos desde hace años. Esto lo solucionó en una noche."</p>
+                <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">Juan P. - Verificado</p>
+            </div>
+            <div style="background: #f9f9f9; padding: 20px; border-radius: 8px;">
+                <div style="color: #FFD700;">★★★★★</div>
+                <h4 style="margin: 10px 0 5px; font-size: 0.95rem;">Muy cómodo</h4>
+                <p style="font-size: 0.9rem; color: #555;">"Tenía miedo de que me doliera al quitarlo, pero el pegamento es muy suave."</p>
+                <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">Maria L. - Verificado</p>
             </div>
         </div>
     </section>
 
-    <footer style="text-align: center; color: #aaa; font-size: 0.8rem; margin-top: 30px;">
-        <p>© 2025 Silent Sleep.</p>
+    <footer>
+        <p>© 2025 Silent Sleep. Todos los derechos reservados.</p>
+        <p style="margin-top: 10px;">Powered by Shopify Style HTML</p>
     </footer>
 
     <script>
+        // Lógica para cambiar la foto al hacer clic en miniatura
+        function changeImage(thumb, src) {
+            document.getElementById('mainImg').src = src;
+            // Quitar clase active de todas
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            // Poner clase active a la clickeada
+            thumb.classList.add('active');
+        }
+
+        // Lógica WhatsApp
         function comprarPorWhatsApp() {
-            // 🔴 PON TU NÚMERO AQUÍ
-            let telefono = "5210000000000"; 
-            let mensaje = "Hola, me interesa el Pack Silent Sleep de $14.99. ¿Cómo procedo?";
+            let telefono = "5210000000000"; // 🔴 PON TU NÚMERO
+            let mensaje = "Hola, quiero comprar el Pack Silent Sleep de la oferta.";
             window.open("https://wa.me/" + telefono + "?text=" + encodeURIComponent(mensaje), '_blank');
         }
     </script>
